@@ -1,20 +1,22 @@
 # app.py
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import joblib
 
 app = Flask(__name__)
 model = joblib.load("phishing_detector.pkl")
 
-@app.route("/predict", methods=["POST"])
-def predict():
-    data = request.get_json()
-    message = data.get("message", "")
-    prediction = model.predict([message])[0]
-    prob = model.predict_proba([message])[0][prediction]
-    return jsonify({
-        "prediction": int(prediction),
-        "confidence": round(float(prob), 3)
-    })
+@app.route("/", methods=["GET", "POST"])
+def home():
+    if request.method == "POST":
+        email = request.form.get("email", "")
+        prediction = model.predict([email])[0]
+        prob = model.predict_proba([email])[0][prediction]
+        result = {
+            "prediction": "fake" if prediction == 1 else "real",
+            "confidence": round(float(prob), 3)
+        }
+        return render_template("index.html", result=result, email=email)
+    return render_template("index.html", result=None)
 
 if __name__ == "__main__":
     app.run(debug=True)
