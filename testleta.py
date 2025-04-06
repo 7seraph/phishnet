@@ -1,3 +1,4 @@
+# Testing Letta API client
 from letta_client import Letta
 
 client = Letta(token="MDgwNjQxY2YtMTI0NC00NDZmLThiM2YtMTVhNTIzOTJjMDhiOjhkNTg1ZTg1LTk1ODItNGRmYi1iZjY4LTBiOTRmZTAwYmVlNQ==")
