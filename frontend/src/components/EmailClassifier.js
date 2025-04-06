@@ -4,14 +4,23 @@ import axios from "axios";
 function EmailClassifier() {
   const [email, setEmail] = useState("");
   const [result, setResult] = useState(null);
+  const [insights, setInsights] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://127.0.0.1:5000/", { email });
+      // Classify the email
+      const response = await axios.post("http://127.0.0.1:5000/api/classify", { email });
       setResult(response.data);
+
+      // Fetch insights from the backend
+      const insightsResponse = await axios.post("http://127.0.0.1:5000/api/insights", {
+        email,
+        prediction: response.data.prediction,
+      });
+      setInsights(insightsResponse.data.insights);
     } catch (error) {
-      console.error("Error classifying email:", error);
+      console.error("Error:", error);
     }
   };
 
@@ -29,9 +38,15 @@ function EmailClassifier() {
         <button type="submit">Classify</button>
       </form>
       {result && (
-        <div>
+        <div className="result-box">
           <h2>Prediction: {result.prediction}</h2>
           <p>Confidence: {result.confidence}</p>
+          {insights && (
+            <div>
+              <h3>Insights:</h3>
+              <p>{insights}</p>
+            </div>
+          )}
         </div>
       )}
     </div>

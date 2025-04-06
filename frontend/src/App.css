@@ -1,12 +1,17 @@
 .App {
   text-align: center;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif; /* Updated font style */
+  background-color: #f9f9f9; /* Light background for better readability */
+  padding: 20px;
 }
 
 textarea {
   margin: 10px 0;
   padding: 10px;
   font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%; /* Make the textarea responsive */
 }
 
 button {
@@ -15,6 +20,7 @@ button {
   background-color: #007bff;
   color: white;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -22,6 +28,26 @@ button:hover {
   background-color: #0056b3;
 }
 
-h2 {
-  color: #28a745;
+h2, h3 {
+  color: #333; /* Darker color for better contrast */
+}
+
+.result-box {
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid #28a745; /* Green border for success */
+  border-radius: 10px;
+  background-color: #e9f7ef; /* Light green background */
+  width: 60%; /* Center the box and make it responsive */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.result-box h2 {
+  font-size: 24px; /* Larger font size for prediction */
+  color: #28a745; /* Green color for prediction */
+}
+
+.result-box p {
+  font-size: 18px; /* Slightly larger font size for confidence */
+  color: #555; /* Neutral color for confidence text */
 }
