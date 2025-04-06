@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify, render_template
 import joblib
 from flask_cors import CORS
 from letta_client import Letta
+#import Letta
 import traceback
 
 app = Flask(__name__)
@@ -76,7 +77,7 @@ def get_insights():
 
         print("Letta response:", letta_response)
 
-        # Fixed line
+        # Explaination
         insights = letta_response.messages[-1].content.strip()
 
         return jsonify({"insights": insights})

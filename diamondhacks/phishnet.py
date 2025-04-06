@@ -9,7 +9,7 @@ import joblib
 
 
 # Load dataset
-path = "C:/Users/Kevin Tran/.cache/kagglehub/datasets/naserabdullahalam/phishing-email-dataset/versions/1"
+path = "C:/Users/trank/.cache/kagglehub/datasets/naserabdullahalam/phishing-email-dataset/versions/1"
 df = pd.read_csv(path + "/Enron.csv")
 
 # Preprocess dataset
